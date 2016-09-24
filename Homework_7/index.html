@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Homework_7</title>
+    <style>
+        .div {
+            margin: 50px;
+            padding: 50px;
+            height: 100px;
+            width: 200px;
+            border: 1px solid black;
+            float: left;
+        }
+    </style>
+</head>
+<body>
+<form>
+    <label>Name <input type="text" id="name"></label>
+    <br><br>
+    <label><input type="checkbox" value="admin" id="role">Admin</label>
+    <br><br>
+    <label><input type="button" value="Add" onclick="ReadFile('http://localhost/Homework_7/server.php', 'add')"></label>
+    <label><input type="button" id="show" value="show" onclick="ReadFile('http://localhost/Homework_7/server.php', 'all')"></label>
+</form>
+<div id="add" class="div"></div>
+<div id="all" class="div"></div>
+<script>
+
+    function ReadFile(filename, container) {
+
+        var name = document.getElementById("name").value;
+        var role = document.getElementById("role").checked;
+        var show = document.getElementById("show").value;
+        var args;
+
+        if (container == "add") {
+            args = "name=" + name + "&" + "role=" + role;
+            //Создаю функцию обработчик
+            var Handler = function (Request) {
+                document.getElementById(container).innerHTML += Request.responseText;
+            };
+
+            //Отправляю запрос
+            SendRequest("POST", filename, args, Handler);
+
+        } else {
+            args = "list=" + show;
+            //Создаю функцию обработчик
+            var Handler_2 = function (Request) {
+                document.getElementById(container).innerHTML = Request.responseText;
+            };
+
+            //Отправляю запрос
+            SendRequest("GET", filename, args, Handler_2);
+
+        }
+    }
+
+    function SendRequest(method, path, args, handler) {
+        //Создаю запрос
+        var Request = new XMLHttpRequest();
+
+        //Назначаю обработчик
+        Request.onreadystatechange = function () {
+            //Если обмен данными завершен
+            if (Request.readyState == 4) {
+                //Передаю управление обработчику пользователя
+                handler(Request);
+            }
+        };
+
+        if (method.toLowerCase() == "get" && args.length > 0)
+            path += "?" + args;
+
+        //Инициализирую соединение
+        Request.open(method, path, true);
+
+        if (method.toLowerCase() == "post") {
+            //Устанавливаю заголовок
+            Request.setRequestHeader("Content-Type", "application/x-www-form-urlencoded; charset=utf-8");
+            //Посылаю запрос
+            Request.send(args);
+        } else {
+            //Если это GET-запрос
+            Request.send(null);
+        }
+    }
+
+
+
+</script>
+</body>
+</html>
