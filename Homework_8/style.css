@@ -1,0 +1,115 @@
+header, main, nav {
+    width: 940px;
+    margin: 0 auto;    
+    padding: 10px;
+} 
+
+ul {      
+    text-align: center;
+    margin: 0;
+    padding: 0;   
+}
+
+li {
+    list-style: none; 
+    display: inline;
+    background: black;
+    color: white; 
+    padding: 12px;
+    text-transform: uppercase;
+    font-size: 15px;
+    margin-left: -5px;    
+}
+
+li:hover {
+    background: #AC100B;
+}
+
+.top-news {
+    width: 40%;
+    padding: 10px;
+    float: left;
+}
+
+.title {
+    margin: 0;
+    text-transform: uppercase;
+    border-bottom: 4px solid #AC100B;
+}
+
+.article {
+    float: left;
+    width: 30%;
+    margin: 15px 5px;
+    position: relative;
+}
+
+.article img {
+    width: 100%;
+    height: 90px;
+}
+
+.article p {
+    text-align: left;
+    padding-bottom: 30px;
+}
+
+.read-more {
+    text-decoration: none;
+    color: #AC100B;
+    text-transform: uppercase;
+    font-weight: bold;
+    position: absolute;
+    bottom: 0;
+    cursor: pointer;
+}
+
+.hot-news {
+    width: 25%;
+    float: left;  
+    padding: 10px;
+    position: relative;   
+}
+
+.hot-more {
+    position: relative;
+}
+
+.hours {
+    text-align: right;
+}
+
+.sign-up {
+    width: 27%;
+    float: left;  
+    padding: 10px;
+    position: relative;  
+    background: #dedede;
+}
+
+.sign-up h3 {    
+    text-transform: uppercase;
+    margin: 0;
+}
+
+input {
+    padding: 7px;
+}
+
+input[type="submit"] {
+    background: #AC100B;
+    color: white;
+    text-transform: uppercase;
+    padding: 5px 30px;
+}
+
+.spam {
+    font-size: 15px;
+    color: #AC100B;
+}
+
+
+
+
+
+    
