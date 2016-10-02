@@ -2,7 +2,20 @@ header, main, nav {
     width: 940px;
     margin: 0 auto;    
     padding: 10px;
-} 
+}
+
+header a {
+    float: left;
+}
+
+.check {
+    float: right;
+    margin-right: 10px;
+}
+
+.clear-both {
+    clear: both;
+}
 
 ul {      
     text-align: center;
@@ -61,6 +74,7 @@ li:hover {
     font-weight: bold;
     position: absolute;
     bottom: 0;
+    left: 0;
     cursor: pointer;
 }
 
@@ -96,16 +110,28 @@ input {
     padding: 7px;
 }
 
-input[type="submit"] {
+input[type="submit"], input[type="button"] {
     background: #AC100B;
     color: white;
     text-transform: uppercase;
     padding: 5px 30px;
 }
 
+.delete {
+    margin: 10px;
+}
+
 .spam {
     font-size: 15px;
     color: #AC100B;
+}
+
+#statistics {
+    width: 200px;
+    background: red;
+    text-align: center;
+    padding:20px;
+    color: white;
 }
 
 
