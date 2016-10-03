@@ -127,7 +127,7 @@ input[type="submit"], input[type="button"] {
 }
 
 #statistics {
-    width: 200px;
+    width: 300px;
     background: red;
     text-align: center;
     padding:20px;

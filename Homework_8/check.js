@@ -33,8 +33,15 @@ function showNumbersOfTags() {
                         element[index].parentNode.removeChild(element[index]);
                     }
                 };
-                document.body.appendChild(button);
-                return this.name + " - " + this.count;
+
+                var paragraph = document.createElement('p');
+                paragraph.innerHTML = this.name + " - " + this.count + " ";
+                statistics.appendChild(paragraph);
+                paragraph.appendChild(button);
+
+                var br = document.createElement('br');
+                paragraph.appendChild(br);
+
             }
         }
 
@@ -64,7 +71,7 @@ function showNumbersOfTags() {
 
         //вывод статистики по тегам в div
         for (var w = 0; w < massOfObjectTags.length; w++) {
-            statistics.innerHTML += massOfObjectTags[w].showStatistics() + '<br>';
+            massOfObjectTags[w].showStatistics() + '<br>';
         }
         showBlock(statistics);
 
