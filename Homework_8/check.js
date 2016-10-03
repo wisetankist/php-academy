@@ -71,7 +71,7 @@ function showNumbersOfTags() {
 
         //вывод статистики по тегам в div
         for (var w = 0; w < massOfObjectTags.length; w++) {
-            massOfObjectTags[w].showStatistics() + '<br>';
+            massOfObjectTags[w].showStatistics();
         }
         showBlock(statistics);
 
