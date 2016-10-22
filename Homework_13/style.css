@@ -1,0 +1,29 @@
+.wrapper {
+    width: 1400px;
+    height: 800px;
+    border: 5px solid red;
+    margin: 0 auto;
+}
+
+.game-field {
+    width: 70%;
+    height: 100%;
+    background: grey;
+    float: left;
+}
+
+.conditions {
+    padding: 30px;
+    float: left;
+    display: inline-block;
+}
+
+.main-field {
+    border: 1px solid red;
+    width: 100%;
+    height: 100%;
+}
+
+.main-field td {
+    border: 1px solid red;
+}
