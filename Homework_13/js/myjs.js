@@ -1,9 +1,3 @@
-$(document).ready(function() {
-    $('.cell').click(function () {
-        alert('s');
-    })
-});
-
 function createField() {
     var gameField = $('.game-field');
     gameField.empty();
@@ -31,69 +25,69 @@ function createField() {
     }
 }
 
+function startGame() {
 
+    var numberOfColumns = $('#width');
+    var numberOfRows = $('#height');
+    var speed = $('#speed');
 
+    $('#start-button').prop("disabled", true);
+    $('#create-button').prop("disabled", true);
+    numberOfColumns.prop("disabled", true);
+    numberOfRows.prop("disabled", true);
+    speed.prop("disabled", true);
 
+    var numberOfAllCell = numberOfColumns.val() * numberOfRows.val();
+    var mass = [];
+    for (var i = 0; mass.length !== numberOfAllCell; i++) {
+        var random = Math.round(Math.random() * (numberOfAllCell - 1) + 1) - 1;
 
-    // var gameField = $('.game-field');
-    // gameField.empty();
-    //
-    // var width = $('#width');
-    // var height = $('#height');
-    // var speed = $('#speed');
-    //
-    // if (width.val() > 10 || height.val() > 10) {
-    //     alert('Введенные значения не соответствуют условию');
-    // }
-    // else
-    //     game();
-    //
-    // function game() {
-    //     var numberOfColumns = width.val();
-    //     var numberOfRows = height.val();
-    //     var speedOfGame = speed.val();
-    //     var numberOfAllCell = numberOfColumns * numberOfRows;
-    //
-    //     gameField.append('<table class="main-field">');
-    //
-    //     for (var i = 0; i < numberOfRows; i++) {
-    //         $('.main-field').append('<tr class="rows">');
-    //     }
-    //
-    //     for (var r = 0; r < numberOfColumns; r++) {
-    //         $('.rows').append('<td class="cell">');
-    //     }
-    //
-    //     startGame(speedOfGame, numberOfAllCell);
-    // }
+        if (mass.indexOf(random) == -1) {
+            mass.push(random);
+        }
+    }
 
-    function startGame() {
-        var numberOfColumns = $('#width').val();
-        var numberOfRows = $('#height').val();
-        var speed = $('#speed');
-        var numberOfAllCell = numberOfColumns * numberOfRows;
-        var mass = [];
-        for (var i = 0; mass.length !== numberOfAllCell; i++) {
-            var random = Math.round(Math.random() * (numberOfAllCell - 1) + 1) - 1;
+    var count = 0;
+    var cell = $('.cell');
+    var process = setInterval(function () {
+        addField(mass[count]);
+    }, setSpeed(speed.val()));
 
-            if (mass.indexOf(random) == -1) {
-                mass.push(random);
+    function addField(targetCell) {
+
+        $(cell[targetCell]).css('background-color', 'green').click(function () {
+            $(this).css('background-color', 'red');
+        });
+
+        count++;
+
+        if (count == numberOfAllCell + 1) {
+            window.clearInterval(process);
+            var massOfCells = document.getElementsByClassName('cell');
+            var countOfRedCell = 0;
+
+            for (var i = 0; i < massOfCells.length; i++) {
+
+                console.log(massOfCells[i].style.backgroundColor);
+                if (massOfCells[i].style.backgroundColor == 'red') {
+                    countOfRedCell++;
+                }
+            }
+
+            if (countOfRedCell == numberOfAllCell) {
+                alert('Вы победили');
+            } else {
+                alert('Скрипт победил');
+            }
+
+            var begin = confirm('Повторить игру?');
+            if (begin == true) {
+                createField();
+                startGame();
+            } else {
+                location.reload();
             }
         }
-
-        var count = 0;
-
-        setInterval(function () {addGreenField(mass[count]);}, setSpeed(speed.val()));
-
-        function addGreenField(targetCell) {
-            var cell = $('.cell');
-            $(cell[targetCell]).css('background', 'green').click(function () {
-                $(this).css('background', 'red');
-            });
-
-            count++;
-        }
-
     }
 
     function setSpeed(speed) {
@@ -111,5 +105,8 @@ function createField() {
         }
         return interval;
     }
+}
+
+
 
 
